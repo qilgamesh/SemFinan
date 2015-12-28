@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -8,7 +9,7 @@ import java.util.Locale;
 /**
  * Created by Semenyuk Andrey on 28.12.15.
  */
-public class CompTrans extends Transaction {
+public class CompTrans extends Transaction implements Serializable {
 	ArrayList<Integer> uidList;
 
 	public CompTrans(String n, double s) {

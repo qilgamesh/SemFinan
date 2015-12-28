@@ -1,26 +1,36 @@
 package control;
 
 import Model.CompTrans;
-import Model.Income;
+import Model.SFDB;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
 
 /**
  * Created by Semenyuk Andrey on 22.12.15.
  */
-public class Save {
+public class SaveDB {
+	static String fileName = "semfinan.db";
 
-	private static void save(Object object, String fileName) {
+	static SFDB createNewDB() {
+		CompTrans compTrans = new CompTrans("Начальный остаток", 0);
+		SFDB sfdb = new SFDB();
+		sfdb.compTranses.add(compTrans);
+		return sfdb;
+	}
+
+	SaveDB() {
+		this(createNewDB());
+	}
+
+	SaveDB (SFDB sfdb) {
 		FileOutputStream fOut = null;
 		ObjectOutputStream oOut = null;
 		try {
 			fOut = new FileOutputStream(fileName);
 			oOut = new ObjectOutputStream(fOut);
-			oOut.writeObject(object);
+			oOut.writeObject(sfdb);
 			Log.log("Данные успешно сохранены");
 		} catch (IOException e) {
 			try {
@@ -34,15 +44,4 @@ public class Save {
 			Log.log("Ошибка сохранения");
 		}
 	}
-
-	public static void saveCompleteTransactions(ArrayList<CompTrans> compTranses) {
-		Log.log("Сохрание списка транзакций");
-		save(compTranses, "comptrans.db");
-	}
-
-	public static void saveIncomes(LinkedHashSet<Income> incomes) {
-		Log.log("Сохрание справочника приходов");
-		save(incomes, "incomes.db");
-	}
-
 }

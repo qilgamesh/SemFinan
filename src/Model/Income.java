@@ -4,7 +4,7 @@ package Model;
  * Created by Semenyuk Andrey on 22.12.15.
  * Класс описания элемента справочника доходов
  */
-public class Income implements java.io.Serializable {
+public class Income {
 
 	int uid;
 	String name;

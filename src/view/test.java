@@ -1,10 +1,9 @@
 package view;
 
 
-import Model.CompTrans;
 import Model.IncomeTableModel;
+import Model.SFDB;
 import Model.ScheduledTransaction;
-import control.Load;
 import control.Log;
 
 import javax.swing.*;
@@ -14,6 +13,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+import static control.LoadDB.loadDB;
+
 /**
  * Created by Semenyuk Andrey on 20.12.15.
  */
@@ -21,15 +22,14 @@ public class test {
 
 	public static boolean needSave = false;
 	public static ArrayList<ScheduledTransaction> sTransactions;
-	public static ArrayList<CompTrans> compTrans;
+	public static SFDB sfdb;
 
 	public static void main(String[] args) {
 		Log.log("Запуск приложение");
 
-		//noinspection unchecked
-		compTrans =  Load.loadCompTrans();
+		sfdb = loadDB();
 
-		if (compTrans == null) {
+		if (sfdb == null) {
 			Log.log("Закрытие приложения");
 			System.exit(0);
 		}
@@ -39,7 +39,7 @@ public class test {
 		JFrame frame = new JFrame();
 		frame.getContentPane().setLayout(new FlowLayout());
 
-		IncomeTableModel mod = new IncomeTableModel(compTrans);
+		IncomeTableModel mod = new IncomeTableModel(sfdb.compTranses);
 		table.setModel(mod);
 		frame.getContentPane().add(new JScrollPane(table));
 
