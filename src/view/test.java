@@ -1,16 +1,15 @@
 package view;
 
 
-import Model.IncomeTableModel;
-import Model.SFDB;
-import Model.ScheduledTransaction;
+import Model.ExpTableModel;
+import Model.IncTableModel;
+import Model.SchedTrans;
+import Model.SemFinanDB;
 import control.Log;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 
 import static control.LoadDB.loadDB;
@@ -21,27 +20,43 @@ import static control.LoadDB.loadDB;
 public class test {
 
 	public static boolean needSave = false;
-	public static ArrayList<ScheduledTransaction> sTransactions;
-	public static SFDB sfdb;
+	public static ArrayList<SchedTrans> sTransactions;
+	public static SemFinanDB semFinanDB;
 
 	public static void main(String[] args) {
-		Log.log("Запуск приложение");
+		Log.toConsole("Запуск приложение");
 
-		sfdb = loadDB();
+		semFinanDB = loadDB();
 
-		if (sfdb == null) {
-			Log.log("Закрытие приложения");
+		if (semFinanDB == null) {
+			Log.toConsole("Закрытие приложения");
 			System.exit(0);
 		}
-
-		JTable table = new JTable();
 
 		JFrame frame = new JFrame();
 		frame.getContentPane().setLayout(new FlowLayout());
 
-		IncomeTableModel mod = new IncomeTableModel(sfdb.compTranses);
-		table.setModel(mod);
-		frame.getContentPane().add(new JScrollPane(table));
+		JTable incTable = new JTable();
+
+		incTable.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent me) {
+				JTable table = (JTable) me.getSource();
+				Point p = me.getPoint();
+				int row = table.rowAtPoint(p);
+				if (me.getButton() == 3) {
+					Log.toConsole(String.valueOf(row));
+				}
+			}
+		});
+		IncTableModel incMod = new IncTableModel(semFinanDB.cTrans);
+		incTable.setModel(incMod);
+		frame.getContentPane().add(new JScrollPane(incTable));
+
+
+		JTable expTable = new JTable();
+		ExpTableModel expMod = new ExpTableModel(semFinanDB.cTrans);
+		expTable.setModel(expMod);
+		frame.getContentPane().add(new JScrollPane(expTable));
 
 		JButton btAdd = new JButton(new AbstractAction() {
 			@Override
@@ -49,34 +64,21 @@ public class test {
 			}
 		});
 
-		JButton btLoad = new JButton(new AbstractAction() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		JButton btSave = new JButton();
 
-		JButton btSave = new JButton(new AbstractAction() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				needSave = true;
-			}
-		});
-
-		btLoad.setText("Загрузить");
 		btSave.setText("Сохранить");
 		btAdd.setText("Добавить");
-		frame.getContentPane().add(btLoad);
 		frame.getContentPane().add(btSave);
 		frame.getContentPane().add(btAdd);
-		frame.setSize(new Dimension(800, 600));
+		frame.setSize(new Dimension(1000, 600));
 		frame.setVisible(true);
 
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				if (needSave) {
-					Log.log("Необходимо сохранить изменения");
+					Log.toConsole("Необходимо сохранить изменения");
 				}
-				Log.log("Закрытие приложения");
+				Log.toConsole("Закрытие приложения");
 				System.exit(0);
 			}
 		});

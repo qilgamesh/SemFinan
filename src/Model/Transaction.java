@@ -1,10 +1,12 @@
 package Model;
 
+import java.io.Serializable;
+
 /**
  * Created by Semenyuk Andrey on 21.12.15.
  * Абстрактный класс транзакции
  */
-abstract public class Transaction {
+abstract public class Transaction implements Serializable {
 	String date;
 	String name;
 	double sum;
@@ -15,11 +17,11 @@ abstract public class Transaction {
 		setSum(sum);
 	}
 
-	public String getDate(){
+	public String getDate() {
 		return date;
 	}
 
-	public String getName () {
+	public String getName() {
 		return name;
 	}
 

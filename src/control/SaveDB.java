@@ -1,7 +1,7 @@
 package control;
 
 import Model.CompTrans;
-import Model.SFDB;
+import Model.SemFinanDB;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,25 +13,25 @@ import java.io.ObjectOutputStream;
 public class SaveDB {
 	static String fileName = "semfinan.db";
 
-	static SFDB createNewDB() {
-		CompTrans compTrans = new CompTrans("Начальный остаток", 0);
-		SFDB sfdb = new SFDB();
-		sfdb.compTranses.add(compTrans);
-		return sfdb;
+	static SemFinanDB createNewDB() {
+		CompTrans compTrans = new CompTrans("Начальный остаток", 1);
+		SemFinanDB semFinanDB = new SemFinanDB();
+		semFinanDB.cTrans.add(compTrans);
+		return semFinanDB;
 	}
 
 	SaveDB() {
 		this(createNewDB());
 	}
 
-	SaveDB (SFDB sfdb) {
+	SaveDB(SemFinanDB semFinanDB) {
 		FileOutputStream fOut = null;
 		ObjectOutputStream oOut = null;
 		try {
 			fOut = new FileOutputStream(fileName);
 			oOut = new ObjectOutputStream(fOut);
-			oOut.writeObject(sfdb);
-			Log.log("Данные успешно сохранены");
+			oOut.writeObject(semFinanDB);
+			Log.toConsole("БД успешно сохранена в файл");
 		} catch (IOException e) {
 			try {
 				assert oOut != null;
@@ -41,7 +41,7 @@ public class SaveDB {
 			} catch (IOException ioe) {
 				ioe.printStackTrace();
 			}
-			Log.log("Ошибка сохранения");
+			Log.toConsole("Ошибка сохранения БД");
 		}
 	}
 }

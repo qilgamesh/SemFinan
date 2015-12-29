@@ -2,21 +2,23 @@ package Model;
 
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.Vector;
+import java.util.*;
 
 /**
  * Created by Semenyuk Andrey on 28.12.15.
  */
-public class IncomeTableModel implements TableModel {
+public class ExpTableModel implements TableModel {
 	private Set<TableModelListener> listeners = new HashSet<TableModelListener>();
 
-	private List<CompTrans> incomes;
+	private List<CompTrans> expTranses;
 
-	public IncomeTableModel(List<CompTrans> compTranses) {
-		this.incomes = compTranses;
+	public ExpTableModel(List<CompTrans> expTranses) {
+		this.expTranses = new ArrayList<CompTrans>();
+		for (CompTrans cTrans : expTranses) {
+			if (cTrans.getSum() < 0) {
+				this.expTranses.add(cTrans);
+			}
+		}
 	}
 
 	public void addTableModelListener(TableModelListener listener) {
@@ -24,7 +26,15 @@ public class IncomeTableModel implements TableModel {
 	}
 
 	public Class<?> getColumnClass(int columnIndex) {
-		return String.class;
+		switch (columnIndex) {
+			case 0:
+				return Double.class;
+			case 1:
+				return String.class;
+			case 2:
+				return String.class;
+		}
+		return null;
 	}
 
 	public int getColumnCount() {
@@ -35,28 +45,28 @@ public class IncomeTableModel implements TableModel {
 
 		switch (columnIndex) {
 			case 0:
-				return "Дата";
+				return "Приход";
 			case 1:
 				return "Описание";
 			case 2:
-				return "Приход";
+				return "Дата";
 		}
 		return "";
 	}
 
 	public int getRowCount() {
-		return incomes.size();
+		return expTranses.size();
 	}
 
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		CompTrans bean = incomes.get(rowIndex);
+		CompTrans compTrans = expTranses.get(rowIndex);
 		switch (columnIndex) {
 			case 0:
-				return bean.getDate();
+				return compTrans.getSum() * -1;
 			case 1:
-				return bean.getName();
+				return compTrans.getName();
 			case 2:
-				return bean.getSum();
+				return compTrans.getDate();
 		}
 		return "";
 	}
@@ -70,15 +80,16 @@ public class IncomeTableModel implements TableModel {
 	}
 
 	public void setValueAt(Object value, int rowIndex, int columnIndex) {
-		CompTrans bean = incomes.get(rowIndex);
+		CompTrans compTrans = expTranses.get(rowIndex);
 		switch (columnIndex) {
 			case 0:
-				bean.setDate((String) value);
+				compTrans.setSum(Double.parseDouble((String) value));
 			case 1:
-				bean.setName((String) value);
+				compTrans.setName((String) value);
 			case 2:
-				bean.setSum((double) value);
+				compTrans.setDate((String) value);
 		}
+
 	}
 
 	public void addRow(Vector<String> newRow) {

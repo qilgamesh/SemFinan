@@ -1,14 +1,12 @@
 package control;
 
 
-import Model.SFDB;
+import Model.SemFinanDB;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by Semenyuk Andrey on 22.12.15.
@@ -16,28 +14,32 @@ import java.util.logging.Logger;
 public class LoadDB {
 	static String fileName = "semfinan.db";
 
-	public static SFDB loadDB() {
+	public static SemFinanDB loadDB() {
+		Log.toConsole("Загрузка БД из файла");
 		FileInputStream fIn = null;
 		ObjectInputStream oIn = null;
-		SFDB obj = new SFDB();
+		SemFinanDB obj = null;
 		try {
 			fIn = new FileInputStream(fileName);
 			oIn = new ObjectInputStream(fIn);
-			obj = (SFDB) oIn.readObject();
-			Log.log("Данные успешно загружены");
+			obj = (SemFinanDB) oIn.readObject();
+			Log.toConsole("БД успешно загружена");
 		} catch (FileNotFoundException e) {
-			Log.log("Ошибка: файл " + fileName + " не существует");
-		} catch (SecurityException e) {
-			Log.log("Ошибка: файл " + fileName + " не доступен для чтения");
-		} catch (ClassNotFoundException | IOException e1) {
-			Logger.getLogger(LoadDB.class.getName()).log(Level.SEVERE, null, e1);
-			Log.log("Ошибка загрузки");
-			e1.printStackTrace();
+			Log.toConsole("Файл БД " + fileName + " не существует или ошибка доступа");
+		} catch (IOException e) {
+			Log.toConsole("Ошибка загрузки БД из файла: нет доступа на чтение");
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			Log.toConsole("Ошибка загрузки БД из файла (вероятно, что файл или данные повреждены)");
+			e.printStackTrace();
 		}
+
 		if (obj == null) {
+			Log.toConsole("Создание новой БД");
 			new SaveDB();
 			return SaveDB.createNewDB();
-		} else return obj;
+		} else
+			return obj;
 	}
 
 }
