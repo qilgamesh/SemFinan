@@ -1,7 +1,7 @@
-package control;
+package controller;
 
-import Model.CompTrans;
-import Model.SemFinanDB;
+import model.CompTrans;
+import model.SemFinanDB;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,10 +11,10 @@ import java.io.ObjectOutputStream;
  * Created by Semenyuk Andrey on 22.12.15.
  */
 public class SaveDB {
-	static String fileName = "semfinan.db";
+	static String fileName = "data/semfinan.db";
 
 	static SemFinanDB createNewDB() {
-		CompTrans compTrans = new CompTrans("Начальный остаток", 1);
+		CompTrans compTrans = new CompTrans("Изначальный остаток", 1);
 		SemFinanDB semFinanDB = new SemFinanDB();
 		semFinanDB.cTrans.add(compTrans);
 		return semFinanDB;

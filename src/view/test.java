@@ -1,18 +1,18 @@
 package view;
 
 
-import Model.ExpTableModel;
-import Model.IncTableModel;
-import Model.SchedTrans;
-import Model.SemFinanDB;
-import control.Log;
+import controller.Log;
+import model.ExpTableModel;
+import model.IncTableModel;
+import model.SchedTrans;
+import model.SemFinanDB;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-import static control.LoadDB.loadDB;
+import static controller.LoadDB.loadDB;
 
 /**
  * Created by Semenyuk Andrey on 20.12.15.

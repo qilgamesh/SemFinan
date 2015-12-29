@@ -1,7 +1,7 @@
-package control;
+package controller;
 
 
-import Model.SemFinanDB;
+import model.SemFinanDB;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,7 +12,7 @@ import java.io.ObjectInputStream;
  * Created by Semenyuk Andrey on 22.12.15.
  */
 public class LoadDB {
-	static String fileName = "semfinan.db";
+	static String fileName = "data/semfinan.db";
 
 	public static SemFinanDB loadDB() {
 		Log.toConsole("Загрузка БД из файла");

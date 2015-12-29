@@ -1,6 +1,4 @@
-package Model;
-
-import control.Log;
+package model;
 
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
@@ -9,29 +7,28 @@ import java.util.*;
 /**
  * Created by Semenyuk Andrey on 28.12.15.
  */
-public class IncTableModel implements TableModel {
+public class ExpTableModel implements TableModel {
 	private Set<TableModelListener> listeners = new HashSet<TableModelListener>();
 
-	private List<CompTrans> incTranses;
+	private List<CompTrans> expTranses;
 
-	public IncTableModel(List<CompTrans> incTranses) {
-		this.incTranses = new ArrayList<CompTrans>();
-		for (CompTrans cTrans : incTranses) {
-			if (cTrans.getSum() > 0) {
-				this.incTranses.add(cTrans);
+	public ExpTableModel(List<CompTrans> expTranses) {
+		this.expTranses = new ArrayList<CompTrans>();
+		for (CompTrans cTrans : expTranses) {
+			if (cTrans.getSum() < 0) {
+				this.expTranses.add(cTrans);
 			}
 		}
 	}
 
 	public void addTableModelListener(TableModelListener listener) {
 		listeners.add(listener);
-
 	}
 
 	public Class<?> getColumnClass(int columnIndex) {
 		switch (columnIndex) {
 			case 0:
-				return String.class;
+				return Double.class;
 			case 1:
 				return String.class;
 			case 2:
@@ -48,28 +45,28 @@ public class IncTableModel implements TableModel {
 
 		switch (columnIndex) {
 			case 0:
-				return "Дата";
+				return "Расход";
 			case 1:
 				return "Описание";
 			case 2:
-				return "Приход";
+				return "Дата";
 		}
 		return "";
 	}
 
 	public int getRowCount() {
-		return incTranses.size();
+		return expTranses.size();
 	}
 
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		CompTrans compTrans = incTranses.get(rowIndex);
+		CompTrans compTrans = expTranses.get(rowIndex);
 		switch (columnIndex) {
 			case 0:
-				return compTrans.getDate();
+				return compTrans.getSum() * -1;
 			case 1:
 				return compTrans.getName();
 			case 2:
-				return compTrans.getSum();
+				return compTrans.getDate();
 		}
 		return "";
 	}
@@ -83,17 +80,14 @@ public class IncTableModel implements TableModel {
 	}
 
 	public void setValueAt(Object value, int rowIndex, int columnIndex) {
-		CompTrans compTrans = incTranses.get(rowIndex);
+		CompTrans compTrans = expTranses.get(rowIndex);
 		switch (columnIndex) {
 			case 0:
-				Log.toConsole((String) value);
-				compTrans.setDate((String) value);
+				compTrans.setSum(Double.parseDouble((String) value));
 			case 1:
-				Log.toConsole((String) value);
 				compTrans.setName((String) value);
 			case 2:
-				Log.toConsole((String) value);
-				compTrans.setSum(Double.parseDouble((String) value));
+				compTrans.setDate((String) value);
 		}
 
 	}
