@@ -5,7 +5,7 @@ import javax.swing.table.TableModel;
 import java.util.*;
 
 /**
- * Created by Semenyuk Andrey on 28.12.15.
+ * @author Andrey Semenyuk
  */
 public class ExpTableModel implements TableModel {
 	private Set<TableModelListener> listeners = new HashSet<TableModelListener>();
@@ -26,15 +26,7 @@ public class ExpTableModel implements TableModel {
 	}
 
 	public Class<?> getColumnClass(int columnIndex) {
-		switch (columnIndex) {
-			case 0:
-				return Double.class;
-			case 1:
-				return String.class;
-			case 2:
-				return String.class;
-		}
-		return null;
+		return String.class;
 	}
 
 	public int getColumnCount() {
@@ -84,10 +76,15 @@ public class ExpTableModel implements TableModel {
 		switch (columnIndex) {
 			case 0:
 				compTrans.setSum(Double.parseDouble((String) value));
+				break;
 			case 1:
 				compTrans.setName((String) value);
+				break;
 			case 2:
 				compTrans.setDate((String) value);
+				break;
+			default:
+				break;
 		}
 
 	}

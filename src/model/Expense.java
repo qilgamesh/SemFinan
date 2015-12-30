@@ -1,8 +1,7 @@
 package model;
 
 /**
- * Created by Semenyuk Andrey on 22.12.15.
- * Класс описания элемента справочника расходов
+ * @author Andrey Semenyuk
  */
 public class Expense implements java.io.Serializable {
 

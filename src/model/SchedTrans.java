@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Created by Semenyuk Andrey on 28.12.15.
+ * @author Andrey Semenyuk
  */
 public class SchedTrans extends Transaction {
 	boolean repeat = true;

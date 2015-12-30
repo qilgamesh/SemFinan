@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 /**
- * Created by Semenyuk Andrey on 22.12.15.
+ * @author Andrey Semenyuk
  */
 public class SaveDB {
 	static String fileName = "data/semfinan.db";

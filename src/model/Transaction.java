@@ -3,8 +3,7 @@ package model;
 import java.io.Serializable;
 
 /**
- * Created by Semenyuk Andrey on 21.12.15.
- * Абстрактный класс транзакции
+ * @author Andrey Semenyuk
  */
 abstract public class Transaction implements Serializable {
 	String date;

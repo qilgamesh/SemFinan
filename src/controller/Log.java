@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by Semenyuk Andrey on 23.12.15.
+ * @author Andrey Semenyuk
  */
 
 public class Log {

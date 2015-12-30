@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import static controller.LoadDB.loadDB;
 
 /**
- * Created by Semenyuk Andrey on 20.12.15.
+ * @author Andrey Semenyuk
  */
 public class test {
 

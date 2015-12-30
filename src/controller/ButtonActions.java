@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 
 /**
- * Created by Semenyuk Andrey on 29.12.15.
+ * @author Andrey Semenyuk
  */
 public class ButtonActions extends AbstractAction {
 

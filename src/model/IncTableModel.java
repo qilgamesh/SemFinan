@@ -7,7 +7,7 @@ import javax.swing.table.TableModel;
 import java.util.*;
 
 /**
- * Created by Semenyuk Andrey on 28.12.15.
+ * @author Andrey Semenyuk
  */
 public class IncTableModel implements TableModel {
 	private Set<TableModelListener> listeners = new HashSet<TableModelListener>();
@@ -29,15 +29,7 @@ public class IncTableModel implements TableModel {
 	}
 
 	public Class<?> getColumnClass(int columnIndex) {
-		switch (columnIndex) {
-			case 0:
-				return String.class;
-			case 1:
-				return String.class;
-			case 2:
-				return String.class;
-		}
-		return null;
+		return String.class;
 	}
 
 	public int getColumnCount() {
@@ -88,12 +80,17 @@ public class IncTableModel implements TableModel {
 			case 0:
 				Log.toConsole((String) value);
 				compTrans.setDate((String) value);
+				break;
 			case 1:
 				Log.toConsole((String) value);
 				compTrans.setName((String) value);
+				break;
 			case 2:
 				Log.toConsole((String) value);
 				compTrans.setSum(Double.parseDouble((String) value));
+				break;
+			default:
+				break;
 		}
 
 	}

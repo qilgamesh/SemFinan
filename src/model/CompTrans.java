@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Created by Semenyuk Andrey on 28.12.15.
+ * @author Andrey Semenyuk
  */
 public class CompTrans extends Transaction implements Serializable {
 	ArrayList<Integer> uidList;

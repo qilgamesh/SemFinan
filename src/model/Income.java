@@ -1,8 +1,7 @@
 package model;
 
 /**
- * Created by Semenyuk Andrey on 22.12.15.
- * Класс описания элемента справочника доходов
+ * @author Andrey Semenyuk
  */
 public class Income {
 

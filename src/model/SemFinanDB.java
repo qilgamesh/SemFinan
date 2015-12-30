@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * Created by Semenyuk Andrey on 29.12.15.
+ * @author Andrey Semenyuk
  */
 public class SemFinanDB implements Serializable {
 	public ArrayList<CompTrans> cTrans;
