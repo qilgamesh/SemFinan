@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 /**
- * Created by Semenyuk Andrey on 22.12.15.
+ * @author Andrey Semenyuk
  */
 public class LoadDB {
 	static String fileName = "data/semfinan.db";
