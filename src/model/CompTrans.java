@@ -38,7 +38,8 @@ public class CompTrans extends Transaction implements Serializable {
 	public double balance(ArrayList<CompTrans> complTransactions) {
 		double bal = sum;
 		int tmpIndex = 0;
-		for (int i = 0; i < uidListSize(); i++) bal -= complTransactions.get(uidList.get(i)).getSum();
+		for (int i = 0; i < uidListSize(); i++)
+			bal -= complTransactions.get(uidList.get(i)).getSum();
 		return bal;
 	}
 

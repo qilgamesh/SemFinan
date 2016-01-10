@@ -11,8 +11,8 @@ public class SemFinanDB implements Serializable {
 	public ArrayList<SchedTrans> schedTranses;
 
 	public SemFinanDB() {
-		cTrans = new ArrayList<CompTrans>();
-		schedTranses = new ArrayList<SchedTrans>();
+		cTrans = new ArrayList<>();
+		schedTranses = new ArrayList<>();
 	}
 
 }

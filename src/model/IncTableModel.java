@@ -10,12 +10,12 @@ import java.util.*;
  * @author Andrey Semenyuk
  */
 public class IncTableModel implements TableModel {
-	private Set<TableModelListener> listeners = new HashSet<TableModelListener>();
+	private Set<TableModelListener> listeners = new HashSet<>();
 
 	private List<CompTrans> incTranses;
 
 	public IncTableModel(List<CompTrans> incTranses) {
-		this.incTranses = new ArrayList<CompTrans>();
+		this.incTranses = new ArrayList<>();
 		for (CompTrans cTrans : incTranses) {
 			if (cTrans.getSum() > 0) {
 				this.incTranses.add(cTrans);

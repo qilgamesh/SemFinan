@@ -1,5 +1,8 @@
 package model;
 
+import controller.Log;
+
+import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 import java.util.*;
@@ -7,13 +10,13 @@ import java.util.*;
 /**
  * @author Andrey Semenyuk
  */
-public class ExpTableModel implements TableModel {
-	private Set<TableModelListener> listeners = new HashSet<TableModelListener>();
+public class ExpTableModel implements TableModel, TableModelListener {
+	private Set<TableModelListener> listeners = new HashSet<>();
 
 	private List<CompTrans> expTranses;
 
 	public ExpTableModel(List<CompTrans> expTranses) {
-		this.expTranses = new ArrayList<CompTrans>();
+		this.expTranses = new ArrayList<>();
 		for (CompTrans cTrans : expTranses) {
 			if (cTrans.getSum() < 0) {
 				this.expTranses.add(cTrans);
@@ -51,14 +54,13 @@ public class ExpTableModel implements TableModel {
 	}
 
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		CompTrans compTrans = expTranses.get(rowIndex);
 		switch (columnIndex) {
 			case 0:
-				return compTrans.getSum() * -1;
+				return expTranses.get(rowIndex).getSum() * -1;
 			case 1:
-				return compTrans.getName();
+				return expTranses.get(rowIndex).getName();
 			case 2:
-				return compTrans.getDate();
+				return expTranses.get(rowIndex).getDate();
 		}
 		return "";
 	}
@@ -72,16 +74,15 @@ public class ExpTableModel implements TableModel {
 	}
 
 	public void setValueAt(Object value, int rowIndex, int columnIndex) {
-		CompTrans compTrans = expTranses.get(rowIndex);
 		switch (columnIndex) {
 			case 0:
-				compTrans.setSum(Double.parseDouble((String) value));
+				expTranses.get(rowIndex).setSum(Double.parseDouble((String) value));
 				break;
 			case 1:
-				compTrans.setName((String) value);
+				expTranses.get(rowIndex).setName((String) value);
 				break;
 			case 2:
-				compTrans.setDate((String) value);
+				expTranses.get(rowIndex).setDate((String) value);
 				break;
 			default:
 				break;
@@ -91,5 +92,10 @@ public class ExpTableModel implements TableModel {
 
 	public void addRow(Vector<String> newRow) {
 
+	}
+
+	@Override
+	public void tableChanged(TableModelEvent e) {
+		Log.toConsole("Данные изменены");
 	}
 }
