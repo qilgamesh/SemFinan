@@ -12,7 +12,6 @@ import java.util.*;
  */
 public class ExpTableModel implements TableModel, TableModelListener {
 	private Set<TableModelListener> listeners = new HashSet<>();
-
 	private List<CompTrans> expTranses;
 
 	public ExpTableModel(List<CompTrans> expTranses) {

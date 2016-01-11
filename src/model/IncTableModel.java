@@ -92,7 +92,6 @@ public class IncTableModel implements TableModel {
 			default:
 				break;
 		}
-
 	}
 
 	public void addRow(Vector<String> newRow) {

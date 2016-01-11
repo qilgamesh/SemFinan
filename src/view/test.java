@@ -10,7 +10,10 @@ import model.SemFinanDB;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import static controller.LoadDB.loadDB;
 
@@ -34,9 +37,10 @@ public class test {
 		}
 
 		JFrame frame = new JFrame();
-		frame.getContentPane().setLayout(new FlowLayout());
+		frame.getContentPane().setLayout(new GridLayout(2, 2));
 
-		JTable incTable = new JTable();
+		IncTableModel incMod = new IncTableModel(semFinanDB.cTrans);
+		JTable incTable = new JTable(incMod);
 
 		incTable.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent me) {
@@ -48,14 +52,11 @@ public class test {
 				}
 			}
 		});
-		IncTableModel incMod = new IncTableModel(semFinanDB.cTrans);
-		incTable.setModel(incMod);
+
 		frame.getContentPane().add(new JScrollPane(incTable));
 
-
-		JTable expTable = new JTable();
 		ExpTableModel expMod = new ExpTableModel(semFinanDB.cTrans);
-		expTable.setModel(expMod);
+		JTable expTable = new JTable(expMod);
 		frame.getContentPane().add(new JScrollPane(expTable));
 
 		JButton btAdd = new JButton(new AbstractAction() {
@@ -70,6 +71,19 @@ public class test {
 		btAdd.setText("Добавить");
 		frame.getContentPane().add(btSave);
 		frame.getContentPane().add(btAdd);
+
+		frame.getContentPane().setLayout(new GridLayout(1, 3));
+		Locale local = new Locale("ru", "RU");
+		DateFormat df = DateFormat.getDateInstance(DateFormat.DEFAULT, local);
+
+		JLabel lblDate = new JLabel(df.format(new Date()));
+		JLabel lblName = new JLabel("Наименование");
+		JLabel lblSum = new JLabel("0");
+
+		frame.getContentPane().add(lblDate);
+		frame.getContentPane().add(lblName);
+		frame.getContentPane().add(lblSum);
+
 		frame.setSize(new Dimension(1000, 600));
 		frame.setVisible(true);
 

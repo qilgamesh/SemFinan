@@ -9,10 +9,6 @@ public class Income {
 	String name;
 	float sum;
 
-	public Income(int uid, String name) {
-		this(uid, name, 0);
-	}
-
 	public Income(int uid, String name, float sum) {
 		this.uid = uid;
 		this.name = name;
@@ -29,5 +25,13 @@ public class Income {
 
 	public String sumToString() {
 		return String.valueOf(this.sum);
+	}
+
+	public void setSum(String sum) {
+		this.sum = Float.valueOf(sum);
+	}
+
+	public void setSum(Float sum) {
+		this.sum = sum;
 	}
 }
