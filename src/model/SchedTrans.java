@@ -11,7 +11,7 @@ public class SchedTrans extends Transaction {
 	}
 
 	public SchedTrans(String date, String name, double sum, boolean repeat) {
-		super(date, name, sum);
+		super(name, sum);
 		this.repeat = repeat;
 	}
 

@@ -5,43 +5,41 @@ import java.io.Serializable;
 /**
  * @author Andrey Semenyuk
  */
-abstract public class Transaction implements Serializable {
-	String date;
+public class Transaction implements Serializable {
+	private boolean planned;
 	String name;
 	double sum;
 
-	public Transaction(String date, String name, double sum) {
-		setDate(date);
+	public Transaction(String name, double sum) {
 		setName(name);
 		setSum(sum);
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public double getSum() {
-		return sum;
-	}
-
-	public boolean isIncome() {
-		return sum > 0;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public void setSum(double sum) {
 		this.sum = sum;
+	}
+
+	public double getSum() {
+		return sum;
+	}
+
+	public boolean isPlanned() {
+		return planned;
+	}
+
+	@Override
+	public String toString() {
+		if (planned)
+			return "Запланированная";
+		return "Завершённая";
 	}
 
 }

@@ -1,10 +1,7 @@
 package model;
 
 import java.io.Serializable;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * @author Andrey Semenyuk
@@ -13,8 +10,7 @@ public class CompTrans extends Transaction implements Serializable {
 	ArrayList<Integer> uidList;
 
 	public CompTrans(String n, double s) {
-		super("", n, s);
-		setDateNow();
+		super(n, s);
 	}
 
 	public void addUid(int uid) {
@@ -27,12 +23,6 @@ public class CompTrans extends Transaction implements Serializable {
 
 	public Integer[] getUidList() {
 		return (Integer[]) uidList.toArray();
-	}
-
-	void setDateNow() {
-		Locale local = new Locale("ru", "RU");
-		DateFormat df = DateFormat.getDateInstance(DateFormat.DEFAULT, local);
-		setDate(df.format(new Date()));
 	}
 
 	public double balance(ArrayList<CompTrans> complTransactions) {

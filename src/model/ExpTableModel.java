@@ -58,8 +58,6 @@ public class ExpTableModel implements TableModel, TableModelListener {
 				return expTranses.get(rowIndex).getSum() * -1;
 			case 1:
 				return expTranses.get(rowIndex).getName();
-			case 2:
-				return expTranses.get(rowIndex).getDate();
 		}
 		return "";
 	}
@@ -79,9 +77,6 @@ public class ExpTableModel implements TableModel, TableModelListener {
 				break;
 			case 1:
 				expTranses.get(rowIndex).setName((String) value);
-				break;
-			case 2:
-				expTranses.get(rowIndex).setDate((String) value);
 				break;
 			default:
 				break;

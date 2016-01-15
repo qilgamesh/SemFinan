@@ -16,7 +16,7 @@ public class SaveDB {
 	static SemFinanDB createNewDB() {
 		CompTrans compTrans = new CompTrans("Изначальный остаток", 1);
 		SemFinanDB semFinanDB = new SemFinanDB();
-		semFinanDB.cTrans.add(compTrans);
+		semFinanDB.doneTransactions.add(compTrans);
 		return semFinanDB;
 	}
 

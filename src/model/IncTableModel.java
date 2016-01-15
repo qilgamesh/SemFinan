@@ -57,10 +57,8 @@ public class IncTableModel implements TableModel {
 		CompTrans compTrans = incTranses.get(rowIndex);
 		switch (columnIndex) {
 			case 0:
-				return compTrans.getDate();
-			case 1:
 				return compTrans.getName();
-			case 2:
+			case 1:
 				return compTrans.getSum();
 		}
 		return "";
@@ -79,13 +77,9 @@ public class IncTableModel implements TableModel {
 		switch (columnIndex) {
 			case 0:
 				Log.toConsole((String) value);
-				compTrans.setDate((String) value);
-				break;
-			case 1:
-				Log.toConsole((String) value);
 				compTrans.setName((String) value);
 				break;
-			case 2:
+			case 1:
 				Log.toConsole((String) value);
 				compTrans.setSum(Double.parseDouble((String) value));
 				break;

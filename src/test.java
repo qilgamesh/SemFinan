@@ -1,19 +1,10 @@
-package view;
-
-
 import controller.Log;
-import model.ExpTableModel;
-import model.IncTableModel;
 import model.SchedTrans;
 import model.SemFinanDB;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-import java.text.DateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 import static controller.LoadDB.loadDB;
 
@@ -38,8 +29,8 @@ public class test {
 
 		JFrame frame = new JFrame();
 		frame.getContentPane().setLayout(new GridLayout(2, 2));
-
-		IncTableModel incMod = new IncTableModel(semFinanDB.cTrans);
+/*
+		IncTableModel incMod = new IncTableModel(semFinanDB.doneTransactions);
 		JTable incTable = new JTable(incMod);
 
 		incTable.addMouseListener(new MouseAdapter() {
@@ -55,7 +46,7 @@ public class test {
 
 		frame.getContentPane().add(new JScrollPane(incTable));
 
-		ExpTableModel expMod = new ExpTableModel(semFinanDB.cTrans);
+		ExpTableModel expMod = new ExpTableModel(semFinanDB.doneTransactions);
 		JTable expTable = new JTable(expMod);
 		frame.getContentPane().add(new JScrollPane(expTable));
 
@@ -96,6 +87,7 @@ public class test {
 				System.exit(0);
 			}
 		});
+*/
 	}
 
 }
