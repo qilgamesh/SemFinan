@@ -1,7 +1,7 @@
 package controller;
 
-import model.CompTrans;
 import model.SemFinanDB;
+import model.Transaction;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class SaveDB {
 	static String fileName = "data/semfinan.db";
 
 	static SemFinanDB createNewDB() {
-		CompTrans compTrans = new CompTrans("Изначальный остаток", 1);
+		Transaction compTrans = new Transaction("Изначальный остаток", 1);
 		SemFinanDB semFinanDB = new SemFinanDB();
 		semFinanDB.doneTransactions.add(compTrans);
 		return semFinanDB;

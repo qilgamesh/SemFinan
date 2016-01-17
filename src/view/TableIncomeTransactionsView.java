@@ -3,7 +3,7 @@ package view;
 import javafx.geometry.Insets;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.GridPane;
 import model.Model;
 import model.Transaction;
 import model.sfTableModel;
@@ -13,12 +13,13 @@ import java.util.Collection;
 /**
  * @author Andrey Semenyuk
  */
-public class TableTransactionView extends sfTableView<Transaction> {
+public class TableIncomeTransactionsView extends sfTableView<Transaction>  {
 	private final TableView viewer;
 
-	public TableTransactionView(Pane pane) {
+	public TableIncomeTransactionsView(GridPane pane) {
 		viewer = new TableView();
 		viewer.setEditable(true);
+		//viewer.setItems((ObservableList) new TableContentProvider<Transaction>());
 
 		final TableColumn dayCol = new TableColumn<Transaction, Object>("День");
 		dayCol.setMinWidth(10);
@@ -34,17 +35,18 @@ public class TableTransactionView extends sfTableView<Transaction> {
 		viewer.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		pane.setPadding(new Insets(10, 10, 10, 10));
-		pane.getChildren().add(viewer);
-
+		pane.getChildren().addAll(viewer);
 	}
 
 	@Override
 	public void setModel(sfTableModel<Transaction> model) {
 		super.setModel(model);
+		//viewer.set
 	}
 
 	@Override
 	public void modelChanged(Model<Collection<Model<Transaction>>> model) {
 		viewer.refresh();
+
 	}
 }

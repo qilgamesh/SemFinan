@@ -16,7 +16,7 @@ import java.util.Collection;
 public abstract class sfTableView<P> extends BaseView<sfTableModel<P>, Collection<Model<P>>> {
 	private final Controller<P> controller = new Controller<P>();
 
-	private final sfTableController<P> listController = new sfTableController<P>();
+	private final sfTableController<P> tableController = new sfTableController<>();
 
 	/**
 	 * Редактировать модель
@@ -34,7 +34,7 @@ public abstract class sfTableView<P> extends BaseView<sfTableModel<P>, Collectio
 	 * @param model модель
 	 */
 	protected void add(Model<P> model) {
-		listController.execute(sfTableController.O.ADD, getModel(), model);
+		tableController.execute(sfTableController.O.ADD, getModel(), model);
 	}
 
 	/**
@@ -43,6 +43,6 @@ public abstract class sfTableView<P> extends BaseView<sfTableModel<P>, Collectio
 	 * @param model модель
 	 */
 	protected void delete(Model<P> model) {
-		listController.execute(sfTableController.O.REMOVE, getModel(), model);
+		tableController.execute(sfTableController.O.REMOVE, getModel(), model);
 	}
 }

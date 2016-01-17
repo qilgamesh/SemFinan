@@ -6,6 +6,6 @@ package model;
 public class PlanedTransaction extends Transaction {
 
 	public PlanedTransaction(String name, double sum) {
-		super(name, sum);
+		super(name, sum, true);
 	}
 }

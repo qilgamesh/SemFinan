@@ -9,7 +9,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Model<P> {
 	private P property;
 
-	private final Collection<IModelSubscriber<P>> subscribers = new CopyOnWriteArrayList<IModelSubscriber<P>>();
+	private final Collection<IModelSubscriber<P>> subscribers = new CopyOnWriteArrayList<>();
 
 	/**
 	 * Конструктор

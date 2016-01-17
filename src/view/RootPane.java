@@ -4,10 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
+import javafx.scene.layout.*;
+import model.sfTableModel;
 
 import java.time.LocalDate;
 
@@ -20,6 +18,7 @@ public class RootPane extends BorderPane {
 	ObservableList<String> months = FXCollections.observableArrayList("Январь", "Февраль", "Март");
 
 	public RootPane() {
+
 
 		setPrefHeight(600);
 		setPrefWidth(900);
@@ -50,14 +49,18 @@ public class RootPane extends BorderPane {
 		// left
 
 		setLeft(addAccordion());
+
 		//setLeft(treeView());
 
 		// right
 
 		// center
 
-		Pane pane = new Pane();
-		final TableTransactionView view = new TableTransactionView(pane);
+		GridPane pane = new GridPane();
+		final TableIncomeTransactionsView view = new TableIncomeTransactionsView(pane);
+		view.setModel(new sfTableModel<>());
+		//TransactionOverviewController controller = new TransactionOverviewController();
+		//controller.setMainApp(root);
 		setCenter(pane);
 
 	}

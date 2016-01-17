@@ -1,10 +1,8 @@
 import controller.Log;
-import model.SchedTrans;
 import model.SemFinanDB;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 import static controller.LoadDB.loadDB;
 
@@ -14,7 +12,6 @@ import static controller.LoadDB.loadDB;
 public class test {
 
 	public static boolean needSave = false;
-	public static ArrayList<SchedTrans> sTransactions;
 	public static SemFinanDB semFinanDB;
 
 	public static void main(String[] args) {
