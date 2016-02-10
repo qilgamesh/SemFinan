@@ -1,3 +1,3 @@
 # SemFinan
 
-Work on this project aborted. He was refactoring to JavaFX and renamed to SemFinanFX
+Work on this project aborted. He was transferred to JavaFX and renamed to SemFinanFX
